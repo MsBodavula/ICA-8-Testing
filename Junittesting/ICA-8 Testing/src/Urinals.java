@@ -1,12 +1,24 @@
+/* Project to check the Availability of Urinals*/
+/* By Vedasree Bodavula ASU-ID: 1225885273 */
+
 import java.util.*;
+import java.io.*;
 public class Urinals {
-    private String path = System.getProperty("user.dir");
-    public static void main(String[] args){
-        String path = System.getProperty("user.dir");
+    public static void main(String[] args) throws IOException{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter 0 to read input from urinal.dat file /n Enter 1 to read input from console");
         int inputType = sc.nextInt();
-        if( inputType == 1)
+        if(inputType == 0)
+        {
+            String updated = availabilityFromFileData();
+            if(updated.equals(""))
+            {
+                System.out.println("No inputs found in the input file to calculate output");
+            }
+            else
+                System.out.println("Results got updated in the output file "+ updated);
+        }
+        else if( inputType == 1)
         {
             System.out.println("Enter input String");
             String urs = sc.next();
@@ -14,12 +26,58 @@ public class Urinals {
             if(crt)
                 System.out.println(countUrinals(urs));
         }
+        else {
+            System.out.println("Invalid input");
+        }
     }
+
+    public static String availabilityFromFileData() throws IOException
+    {
+        String outputFile = "";
+        String path = "rule.txt";
+        File resourceFile = new File("urinal.dat");
+        File f = new File("rule.txt");
+        int count_value = 1;
+        if (f.exists()) {
+            System.out.println("File rule.txt exists. Checking next file");
+            while (true) {
+                File f1 = new File("rule" + count_value + ".txt");
+                if (f1.exists() && !f1.isDirectory()) {
+                    count_value += 1;
+                } else {
+                    path = "rule"+count_value + ".txt";
+                    break;
+                }
+            }
+        }
+
+        if (resourceFile.exists() && !resourceFile.isDirectory()){
+            FileWriter writer = null;
+            BufferedReader reader1 = new BufferedReader(new FileReader(resourceFile));
+            String line;
+            if( (line = reader1.readLine()) != null && goodString(line))
+            {
+                writer = new FileWriter(path);
+            }
+            while ((line = reader1.readLine()) != null) {
+                if(goodString(line)) {
+                    outputFile = path;
+                    if(writer != null)
+                        writer.write(countUrinals(line) + System.lineSeparator());
+                }
+            }
+            if(writer != null)
+                writer.close();
+        }
+
+        System.out.println("Writing done..");
+        return outputFile;
+    }
+
     public static boolean goodString(String input){
-        if( input.matches("\"^[01]+$\""))
-            return true;
-        return false;
+        return (input.matches("[0-1]+"));
     }
+
     public static int countUrinals(String urs) {
         StringBuilder ur = new StringBuilder(urs);
         int len = ur.length();
@@ -65,8 +123,6 @@ public class Urinals {
                     s = s + 1;
                 }
             }
-
-
         }
         return s;
     }
