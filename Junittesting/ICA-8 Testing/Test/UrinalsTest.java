@@ -1,3 +1,5 @@
+/* Class to test the urinals.java*/
+/* Author: Vedasree Bodavula ASU-ID: 1225885273 */
 import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

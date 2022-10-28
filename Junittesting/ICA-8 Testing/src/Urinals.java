@@ -1,5 +1,5 @@
-/* Project to check the Availability of Urinals*/
-/* By Vedasree Bodavula ASU-ID: 1225885273 */
+/* Class to check the Availability of Urinals*/
+/* Author: Vedasree Bodavula ASU-ID: 1225885273 */
 
 import java.util.*;
 import java.io.*;
