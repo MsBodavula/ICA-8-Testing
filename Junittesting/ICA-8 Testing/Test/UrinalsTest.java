@@ -11,4 +11,8 @@ class UrinalsTest {
         String input = "veda";
         assertEquals(false, Urinals.goodString(input));
     }
+    @org.junit.jupiter.api.Test
+    void countUrinalsTest() {
+        assertEquals( 1 , Urinals.countUrinals("10001"));
+    }
 }
