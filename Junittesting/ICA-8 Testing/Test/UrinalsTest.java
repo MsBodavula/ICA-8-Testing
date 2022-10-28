@@ -53,4 +53,12 @@ class UrinalsTest {
         File f1 = new File(path);
         assertFalse(f1.exists());
     }
+
+    @org.junit.jupiter.api.Test
+    void InputFileNotFound() throws IOException {
+        //Input file urinal.dat is deleted from the current folder
+        File resourceFile = new File("urinal.dat");
+        if(!resourceFile.exists())
+            assertEquals("", Urinals.availabilityFromFileData());
+    }
 }

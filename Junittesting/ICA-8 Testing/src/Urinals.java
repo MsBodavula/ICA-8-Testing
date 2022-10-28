@@ -36,6 +36,8 @@ public class Urinals {
         String outputFile = "";
         String path = "rule.txt";
         File resourceFile = new File("urinal.dat");
+        if(!resourceFile.exists())
+            return "";
         File f = new File("rule.txt");
         int count_value = 1;
         if (f.exists()) {
