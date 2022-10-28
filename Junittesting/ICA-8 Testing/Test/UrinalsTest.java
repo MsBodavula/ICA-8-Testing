@@ -61,4 +61,12 @@ class UrinalsTest {
         if(!resourceFile.exists())
             assertEquals("", Urinals.availabilityFromFileData());
     }
+
+    @org.junit.jupiter.api.Test
+    void EmptyInputFile() throws IOException {
+        //Input file urinal.dat is deleted from the current folder
+        File resourceFile = new File("urinal.dat");
+        if(resourceFile.length() == 0)
+            assertEquals("", Urinals.availabilityFromFileData());
+    }
 }

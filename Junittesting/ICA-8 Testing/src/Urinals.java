@@ -61,6 +61,7 @@ public class Urinals {
             {
                 writer = new FileWriter(path);
                 writer.write(countUrinals(line) + System.lineSeparator());
+                outputFile = path;
             }
             while ((line = reader1.readLine()) != null) {
                 if(goodString(line)) {
