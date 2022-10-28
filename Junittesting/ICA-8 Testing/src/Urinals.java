@@ -12,7 +12,8 @@ public class Urinals {
         }
     }
     public static boolean goodString(String input){
-        System.out.println("====== Vedasree Bodavula == TEST ONE EXECUTED =======");
-        return true;
+        if( input.matches("\"^[01]+$\""))
+            return true;
+        return false;
     }
 }
